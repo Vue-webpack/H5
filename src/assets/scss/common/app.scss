@@ -1,0 +1,62 @@
+@import './_core.scss';
+
+.wrap-app{
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+	overflow: hidden
+}
+.wrap-page{
+	overflow: auto;
+	-webkit-overflow-scrolling: touch;
+	flex: 1;
+}
+.flex-column{
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+}
+.no-data{
+	text-align: center;
+	padding-top: 1rem;
+}
+.page-bottom{
+	height: 1px;
+}
+.msgbox{
+	border-radius: 12px!important;
+	.msgbox-message{
+		font-weight: bold;
+		color: #000;
+	}
+	.msgbox-confirm{
+		color: #d22127;
+	}
+	.msgbox-cancel{
+		color: #d22127;
+	}
+}
+.msgbox-confirm:active, .msgbox-btn:active{
+	color: darken(#d22127, 10%)!important;
+}
+
+
+@include animation-fade-in();
+@include animation-fade-out();
+
+
+@include animation-down-in();
+@include animation-down-out();
+
+@include animation-up-in();
+@include animation-up-out();
+
+@include animation-shrink-in();
+@include animation-shrink-out();
+
+@include animation-left-in();
+@include animation-left-out();
+
+@include animation-right-in();
+@include animation-right-out();
+

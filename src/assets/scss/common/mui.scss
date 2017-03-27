@@ -1,0 +1,1492 @@
+/**
+*	全局变量
+*	便于统一修改
+*
+/************************* start ******************************/
+
+$bgColor: #fff;
+$bgDarkColor: #f1f1f1;
+
+//	line颜色
+$lineColor: #e0e0e0;
+
+//	字体颜色
+$fontColor: #fff;
+$fontNormalColor: #333333;
+$fontLightenrColor: #8f8f94;
+
+.fontLightenrColor{color: #8f8f94}
+
+
+//列表颜色
+$listBgColor: #fff;
+$listBgColorHover: #f9f9f9;
+
+@media screen and (max-width:320px) {
+	$fontSize: 14px;
+	body {
+		font-size: $fontSize;
+	}
+}
+@media screen and (min-width:321px) and (max-width:413px) {
+	$fontSize: 16px;
+	body {
+		font-size: $fontSize;
+	}
+}
+@media screen and (min-width:414px) and (max-width:639px) {
+	$fontSize: 17px;
+	body {
+		font-size: $fontSize;
+	}
+}
+@media screen and (min-width:640px) {
+	$fontSize: 18px;
+	body {
+		font-size: $fontSize;
+	}
+}
+
+// 	flex兼容
+@mixin flexbox {
+	display: box;
+  	display: -webkit-box;
+	display: flex;
+	display: -webkit-flex;
+}
+
+//	flex垂直方向
+@mixin flexboxVertical {
+	box-orient: vertical;
+  -webkit-box-orient: vertical;
+	flex-flow: column;
+	-webkit-flex-flow: column;
+}
+
+//	flex子元素自适应撑满
+@mixin flexAuto {
+	box-flex: 1;
+	-webkit-box-flex: 1;
+	flex: 1;
+	-webkit-flex: 1;
+}
+
+// flex兼容水平居中
+@mixin flexCenterHori{
+	-webkit-box-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+}
+// flex兼容水平居右
+@mixin flexEndHori{
+	box-align: end;
+	-webkit-box-align: end;
+	flex-pack:end;
+	-webkit-flex-pack:end;
+	justify-content: flex-end;
+	-webkit-justify-content: flex-end;
+}
+
+// flex兼容垂直居中
+@mixin flexCenterVeri{
+	box-align:center;
+	-webkit-box-align: center;
+	align-items: center;
+	-webkit-align-items: center;
+}
+
+// flex兼容垂直居底
+@mixin flexEndVeri{
+	box-pack: end;
+	-webkit-box-pack: end;
+	flex-align:end;
+	-webkit-flex-align: end;
+	align-items: flex-end;
+	-webkit-align-items: flex-end;
+}
+
+// 水平反转
+@mixin flexHoriReverse{
+	box-direction: reverse;
+	-webkit-box-direction: reverse;
+	flex-direction: row-reverse;
+	-webkit-flex-direction: row-reverse;
+}
+
+// touchaction 默写浏览器上面可以缩放，禁用
+@mixin touchAction{
+	touch-action: manipulation;
+}
+
+// 禁止选择
+@mixin userSelect{
+	user-select: none;
+}
+
+// 绝对定位百分百的窗口
+@mixin absWin {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 1;
+	overflow: hidden;
+}
+
+html, body {
+	height: 100%;
+	width: 100%;
+	position: absolute;
+	overflow: hidden;
+}
+#app{
+	position: relative;
+	overflow: auto;
+	height: 100%;
+}
+body {
+	background-color: $bgDarkColor;
+	color: $fontNormalColor;
+}
+img{
+	width: 100%;
+	max-width: 100%;
+}
+// 初始化button，select等样式
+textarea {
+	overflow: hidden;
+	resize: none;
+}
+button {
+	overflow: visible;
+    -webkit-appearance: none;
+}
+button,select {
+	text-transform: none;
+}
+button,input,optgroup,select,textarea {
+	margin: 0;
+	font: inherit;
+	color: inherit;
+	background: none;
+	border: 0;
+	padding: 0;
+	outline: none;
+}
+
+//自定义padding
+@mixin paddingAll($top:0, $right: 0, $bottom: 0, $left: 0){
+	padding-top: $top;
+	padding-right: $right;
+	padding-bottom: $bottom;
+	padding-left: $left;
+}
+@mixin padding($top: 0, $left: 0){
+	padding-left: $left;
+	padding-right: $left;
+	padding-bottom: $top;
+	padding-top: $top;
+}
+
+//自定义圆角
+@mixin borderRadius($value: 4px){
+	border-radius: $value;
+}
+
+// 清除浮动
+.clearfix {
+  zoom: 1;
+}
+.clearfix:before, .clearfix:after {
+	content: "\0020";
+	display: block;
+	height: 0;
+	overflow: hidden;
+}
+.clearfix:after {
+	clear: both;
+}
+
+// flex布局
+.mui-flex{
+	@include flexbox;
+}
+.mui-flex-veri{
+	@include flexboxVertical;
+}
+.mui-flex-auto{
+	@include flexAuto;
+}
+.mui-flex-center-hori{
+	@include flexCenterHori;
+}
+.mui-flex-end-hori{
+	@include flexEndHori;
+}
+.mui-flex-center-veri{
+	@include flexCenterVeri;
+}
+.mui-flex-end-veri{
+	@include flexEndVeri;
+}
+.bgfff{
+	background-color: $bgColor
+}
+/************************ end *******************************/
+
+
+/**
+*	初始布局
+*/
+/************************* start ******************************/
+.mui-wrapper {
+	@include absWin;
+	@include flexbox;
+	@include flexboxVertical;
+	&.mui-darkbg{
+		background-color: $bgDarkColor;
+	}
+	background-color: #fff;
+
+	>.mui-header {
+		z-index: 99;
+		position: relative;
+		width: 100%;
+		overflow: hidden;
+	}
+	>.mui-body {
+		width: 100%;
+		box-flex: 1;
+		-webkit-box-flex: 1;
+		flex: 1;
+		@extend .mui-overflow-scroll;
+	}
+	>.mui-footer {
+		width: 100%;
+	}
+}
+/************************ end *******************************/
+
+
+/**
+*	文字大小
+*/
+/************************* start ****************************/
+@mixin headerTitle{
+	font-size: 100%;
+	font-weight: 400;
+	color: $fontNormalColor;
+}
+h1,h2,h3,h4,h5,h6 {
+	@include headerTitle;
+}
+
+$fontSize: (1: 0.34rem, 2: 0.32rem, 3: 0.30rem, 4: 0.28rem, 5: 0.26rem, 6: 0.24rem);
+@each  $header, $value in $fontSize{
+	h#{$header}{
+		font-size: $value;
+		@if $header == 5 {
+			font-weight: normal;
+			color: $fontLightenrColor;
+		}@else if $header == 6{
+			font-weight: normal;
+			color: $fontLightenrColor;
+		}
+	}
+}
+/************************* end *******************************/
+
+
+/**
+*	自动隐藏文字为省略号
+*	2016-01-04
+*	可以通过下面数组配置，目前只写了最多四列
+*/
+/************************* start ******************************/
+$ellipsis: (l1: 1, l2: 2, l3: 3, l4: 4);
+@each $header, $value in $ellipsis{
+	.mui-ellipsis-#{$value}{
+		@if $value == 1{
+			overflow: hidden;
+			white-space: nowrap;
+			text-overflow: ellipsis;
+		} @else{
+			display: -webkit-box !important;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			word-wrap: break-word;
+			white-space: normal;
+			-webkit-line-clamp: $value;
+			-webkit-box-orient: vertical;
+		}
+	}
+}
+/************************ end *******************************/
+
+/**
+*	左右内padding
+*	2016-01-04
+*	目前支持5 10 15 20四个，可以在数组里面添加
+*	添加支持单个方向
+*/
+/************************* start ****************************/
+$paddingLeft: (5: 0.1rem, 7: 0.14rem, 10: 0.2rem, 15: 0.3rem, 20: 0.4rem);
+@each $header, $value in $paddingLeft{
+	.mui-padding-0-#{$header}{
+		padding-left: $value;
+		padding-right: $value;
+	}
+
+	.mui-padding-left-#{$header}{
+		padding-left: $value;
+	}
+
+	.mui-padding-right-#{$header}{
+		padding-right: $value;
+	}
+}
+/************************* end *******************************/
+
+/**
+*	上下内边距
+*	目前支持5 10 15 20四个，可以在数组里面添加
+*	支持单个方向上下
+*/
+/************************* start ****************************/
+$paddingRight: (5: 0.1rem, 10: 0.2rem, 15: 0.3rem, 20: 0.4rem);
+@each $header, $value in $paddingRight{
+	.mui-padding-#{$header}-0{
+		padding-top: $value;
+		padding-bottom: $value;
+	}
+
+	.mui-padding-top-#{$header}{
+		padding-top: $value;
+	}
+
+	.mui-padding-bottom-#{$header}{
+		padding-bottom: $value;
+	}
+}
+/************************* end *******************************/
+
+/**
+*	全部内padding
+*	目前支持5 10 15 20四个，可以在数组里面添加
+*/
+/************************* start ****************************/
+$padding: (5: 0.1rem, 10: 0.2rem, 15: 0.3rem, 20: 0.4rem);
+@each $header, $value in $padding{
+	.mui-padding-#{$header}{
+		padding-top: $value;
+		padding-left: $value;
+		padding-bottom: $value;
+		padding-right: $value;
+	}
+}
+/************************* end *******************************/
+
+
+/**
+*	左右外边距
+*	目前支持5 10 15 20四个，可以在数组里面添加
+*/
+/************************* start ****************************/
+$marginLeft: (5: 0.1rem, 10: 0.2rem, 15: 0.3rem, 20: 0.4rem);
+@each $header, $value in $marginLeft{
+	.mui-margin-0-#{$header}{
+		margin-left: $value;
+		margin-right: $value;
+	}
+
+	.mui-margin-left-#{$header}{
+		margin-left: $value;
+	}
+
+	.mui-margin-right-#{$header}{
+		margin-right: $value;
+	}
+}
+
+//上下外边距
+@each $header, $value in $marginLeft{
+	.mui-margin-#{$header}-0{
+		margin-top: $value;
+		margin-bottom: $value;
+	}
+
+	.mui-margin-top-#{$header}{
+		margin-top: $value;
+	}
+
+	.mui-margin-bottom-#{$header}{
+		margin-bottom: $value;
+	}
+}
+/************************* end *******************************/
+
+
+
+/**
+*	全部外边距
+*	目前支持5 10 15 20四个，可以在数组里面添加
+*/
+/************************* start ****************************/
+$margin: (5: 0.1rem, 10: 0.2rem, 15: 0.3rem, 20: 0.4rem);
+@each $header, $value in $margin{
+	.mui-margin-#{$header}{
+		margin-top: $value;
+		margin-left: $value;
+		margin-bottom: $value;
+		margin-right: $value;
+	}
+}
+/************************* end *******************************/
+
+
+/**
+*	文字对齐
+*/
+/************************* start ****************************/
+$textAlign: (left: left, center: center, right: right, justify: justify);
+@each $header, $value in $textAlign{
+	.mui-text-#{$header}{
+		text-align: $value;
+	}
+}
+/************************* end *******************************/
+
+
+/**
+*	区域内滚动
+*/
+/************************* start ****************************/
+.mui-overflow-scroll{
+	overflow: auto;
+	-webkit-overflow-scrolling: touch;
+	position: relative;
+}
+/************************* end *******************************/
+
+
+/**
+*	显示位置，左右
+*/
+/************************* start ****************************/
+.mui-pull{
+	position: absolute;
+	display: block;
+	@extend .mui-text-center;
+	position:absolute;
+	z-index: 9;
+	top: 0;
+	min-width: 50px;
+	padding: 0 10px;
+	line-height: 1.0rem;
+	&:active{
+		color: #b01d23;
+	}
+}
+.mui-pull-left{
+	left: 0;
+	@extend .mui-pull;
+}
+.mui-pull-right{
+	right: 0;
+	@extend .mui-pull;
+}
+/************************* end *******************************/
+
+
+
+/**
+*	导航
+*/
+/************************* start ****************************/
+.mui-bar{
+	width: 100%;
+	position: relative;
+	z-index: 999;
+	height: 1.0rem;
+	color: $fontColor;
+	@include flexbox;
+	@at-root .mui-bar-title{
+		width: 100%;
+		@include flexAuto;
+		line-height: 1rem;
+		@extend .mui-text-center;
+		@extend .mui-ellipsis-1;
+		padding-left: 1.1rem;
+		padding-right: 1.1rem;
+	}
+	background-color: $bgColor;
+
+	.mui-btn{
+		top: 0.225rem;
+		&.mui-pull-left{
+			left: 0.2rem;
+		}
+		&.mui-pull-right{
+			right: 0.2rem;
+		}
+		display: block;
+		@extend .mui-text-center;
+		position:absolute;
+		z-index: 9;
+		top: 0;
+		min-width: 50px;
+		padding: 0 10px;
+		line-height: 1.0rem;
+		&:active{
+			color: #b01d23;
+		}
+	}
+}
+.mui-bar .mui-iconfont{
+	height: 1.0rem;
+	font-size: 0.44rem;
+}
+
+.mui-bar-tab{
+	background-color: $bgColor;
+	@include flexCenterVeri;
+	@at-root .mui-bar-tab-cell{
+		width: 100%;
+		height: 1.0rem;
+		position: relative;
+		@include flexbox;
+		@include flexAuto;
+		@include flexCenterVeri;
+		@include flexCenterHori;
+		@include flexboxVertical;
+
+		>.mui-label{
+			line-height: 0.36rem;
+			font-size: 0.26rem;
+			@extend .mui-ellipsis-1;
+			padding-right: 0;
+			position: relative;
+			height: auto;
+			color: #777777;
+		}
+		&.mui-bar-tab-active{
+			color: #e94646;
+
+			>.mui-label{
+				color: #e94646;
+			}
+
+			>.mui-iconfont{
+				color: #e94646;
+			}
+		}
+
+		.mui-iconfont{
+			font-size: 0.44rem;
+			line-height: 0.55rem;
+			height: auto;
+			color: #777777;
+		}
+		&:active{
+			.mui-iconfont{
+				color: #e94646;
+			}
+			.mui-label{
+				color: #e94646;
+			}
+		}
+	}
+}
+
+/************************* end *******************************/
+
+
+/**
+*	1像素的线
+*/
+/************************* start ****************************/
+$lineDir: (top: top, left: left, bottom: bottom, right: right);
+@each $header, $value in $lineDir{
+	.mui-line-#{$header}{
+		position: relative;
+		overflow: hidden;
+		&:after{
+			width: 100%;
+			height: 1px;
+			content: "";
+			position: absolute;
+			z-index: 9;
+			display: block;
+			pointer-events: none;
+			@if $value == top {
+				top: 0;
+				left: 0;
+				background: url("../../../assets/images/line_top.png") 0 0 repeat-x;
+				background-size: 50px 1px;
+			} @else if $value == bottom {
+				bottom: 0;
+				left: 0;
+				background: url("../../../assets/images/line_bottom.png") 0 0 repeat-x;
+				background-size: 50px 1px;
+			} @else if $value == left {
+				width: 1px;
+				height: 100%;
+				top: 0;
+				left: 0;
+				background: url("../../../assets/images/line_left.png") 0 0 repeat-y;
+				background-size: 1px 50px;
+			} @else {
+				width: 1px;
+				height: 100%;
+				top: 0;
+				right: 0;
+				background: url("../../../assets/images/line_right.png") 0 0 repeat-y;
+				background-size: 1px 50px;
+			}
+		}
+	}
+}
+/************************* end *******************************/
+
+
+/**
+* 按钮
+* 对于1px细边框，需要切图，通过border-image来实现或者通过after伪类通过缩放来做
+* 0.5px的只有在ios8及以上才支持
+* 安卓无法支持
+*/
+/********************* start **********************************/
+.mui-btn{
+	position: relative;
+	display: inline;
+	padding-left: 0.24rem;
+	padding-right: 0.24rem;
+	font-size: 0.30rem;
+	font-weight: 400;
+	@extend .mui-text-center;
+	background-color: #ecf0f1;
+	white-space: nowrap;
+	vertical-align: middle;
+	@include touchAction;
+	@include userSelect;
+    cursor: pointer;
+    @include borderRadius();
+	color: $fontNormalColor;
+	outline: 0;
+	margin-bottom: 0;
+	border: 0;
+	line-height: 0.6rem;
+	&:active{
+		color: #ffffff;
+		background-color: #bdc3c7;
+	}
+
+	&.mui-btn-middle{
+		padding-top: 0.14rem;
+		padding-bottom: 0.14rem;
+		font-size: 0.32rem;
+	}
+
+	&.mui-btn-big{
+		padding-top: 0.18rem;
+		padding-bottom: 0.18rem;
+		font-size: 0.36rem;
+	}
+}
+
+.mui-btn-noradius{
+	border-radius: 0;
+}
+.mui-radius-5{
+	border-radius: 5px;
+}
+
+.mui-btn-block{
+	display: block;
+	width: 100%;
+	margin-bottom: 0;
+}
+.mui-btn .mui-iconfont{
+	margin-right: 0.12rem;
+}
+
+$btnStyle:(default: #bdc3c7,success: #27ae60, primary: #e94646, forbidden: #cccccc);
+@each $header, $value in $btnStyle{
+	.mui-btn-#{$header}{
+		@if $header == forbidden{
+			color: #ffffff;
+			pointer-events: none;
+			&.mui-btn-outlined{
+				color: #ececec;
+				background-color: $value;
+			}
+		} @else{
+			color: #ffffff;
+			@at-root .mui-btn-#{$header}:active{
+				background-color: $value - 30;
+			}
+
+			@at-root .mui-btn-#{$header}.mui-btn-outlined{
+				color: $value;
+				&:after{
+					border: 1px solid $value - 30;
+				}
+			}
+			@at-root .mui-btn-#{$header}.mui-btn-outlined:active{
+				background-color: $value;
+				color: #ffffff;
+			}
+		}
+		background-color: $value;
+		@at-root .mui-btn-outlined{
+			background: transparent;
+		}
+		&:after{
+			width: 200%;
+			height: 200%;
+			position: absolute;
+			top: 0;
+			left: 0;
+			content: " ";
+			// border: 1px solid $value;
+			transform: scale(0.5) translateZ(0);
+			@include borderRadius(6px);
+			transform-origin: 0 0;
+			pointer-events: none;
+			z-index: 9;
+		}
+	}
+}
+
+
+/************************ end *******************************/
+
+/**
+* icon字体
+* 可以根据具体需要加载不同的字体
+*/
+/************************* start ****************************/
+/*图标*/
+@font-face {
+  font-family: "auiicon";
+  src: url("../../../assets/scss/font/iconfont.ttf") format("truetype");
+}
+.mui-iconfont {
+  position: relative;
+  font-family:"auiicon" !important;
+  font-size:0.32rem;
+  font-style:normal;
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-stroke-width: 0.2px;
+  -moz-osx-font-smoothing: grayscale;
+}
+.mui-iconfont:before{
+	font-size: inherit;
+}
+.mui-icon-appreciate:before { content: "\e644"; }
+.mui-icon-check:before { content: "\e645"; }
+.mui-icon-close:before { content: "\e646"; }
+.mui-icon-edit:before { content: "\e649"; }
+.mui-icon-emoji:before { content: "\e64a"; }
+.mui-icon-favorfill:before { content: "\e64b"; }
+.mui-icon-favor:before { content: "\e64c"; }
+.mui-icon-loading:before { content: "\e64f"; }
+.mui-icon-locationfill:before { content: "\e650"; }
+.mui-icon-location:before { content: "\e651"; }
+.mui-icon-phone:before { content: "\e652"; }
+.mui-icon-roundcheckfill:before { content: "\e656"; }
+.mui-icon-roundcheck:before { content: "\e657"; }
+.mui-icon-roundclosefill:before { content: "\e658"; }
+.mui-icon-roundclose:before { content: "\e659"; }
+.mui-icon-roundrightfill:before { content: "\e65a"; }
+.mui-icon-roundright:before { content: "\e65b"; }
+.mui-icon-search:before { content: "\e65c"; }
+.mui-icon-timefill:before { content: "\e65e"; }
+.mui-icon-time:before { content: "\e65f"; }
+.mui-icon-taxi:before { content: "\e65d"; }
+.mui-icon-unfold:before { content: "\e661"; }
+.mui-icon-warnfill:before { content: "\e662"; }
+.mui-icon-warn:before { content: "\e663"; }
+.mui-icon-camerafill:before { content: "\e664"; }
+.mui-icon-camera:before { content: "\e665"; }
+.mui-icon-commentfill:before { content: "\e666"; }
+.mui-icon-comment:before { content: "\e667"; }
+.mui-icon-likefill:before { content: "\e668"; }
+.mui-icon-like:before { content: "\e669"; }
+.mui-icon-notificationfill:before { content: "\e66a"; }
+.mui-icon-notification:before { content: "\e66b"; }
+.mui-icon-order:before { content: "\e66c"; }
+.mui-icon-samefill:before { content: "\e66d"; }
+.mui-icon-same:before { content: "\e66e"; }
+.mui-icon-deliver:before { content: "\e671"; }
+.mui-icon-evaluate:before { content: "\e672"; }
+.mui-icon-pay:before { content: "\e673"; }
+.mui-icon-send:before { content: "\e675"; }
+.mui-icon-shop:before { content: "\e676"; }
+.mui-icon-ticket:before { content: "\e677"; }
+.mui-icon-back:before { content: "\e679"; }
+.mui-icon-cascades:before { content: "\e67c"; }
+.mui-icon-discover:before { content: "\e67e"; }
+.mui-icon-list:before { content: "\e682"; }
+.mui-icon-more:before { content: "\e684"; }
+.mui-icon-myfill:before { content: "\e685"; }
+.mui-icon-my:before { content: "\e686"; }
+.mui-icon-scan:before { content: "\e689"; }
+.mui-icon-settings:before { content: "\e68a"; }
+.mui-icon-questionfill:before { content: "\e690"; }
+.mui-icon-question:before { content: "\e691"; }
+.mui-icon-shopfill:before { content: "\e697"; }
+.mui-icon-form:before { content: "\e699"; }
+.mui-icon-pic:before { content: "\e69b"; }
+.mui-icon-filter:before { content: "\e69c"; }
+.mui-icon-footprint:before { content: "\e69d"; }
+.mui-icon-top:before { content: "\e69e"; }
+.mui-icon-pulldown:before { content: "\e69f"; }
+.mui-icon-pullup:before { content: "\e6a0"; }
+.mui-icon-right:before { content: "\e6a3"; }
+.mui-icon-refresh:before { content: "\e6a4"; }
+.mui-icon-moreandroid:before { content: "\e6a5"; }
+.mui-icon-deletefill:before { content: "\e6a6"; }
+.mui-icon-refund:before { content: "\e6ac"; }
+.mui-icon-cart:before { content: "\e6af"; }
+.mui-icon-qrcode:before { content: "\e6b0"; }
+.mui-icon-remind:before { content: "\e6b2"; }
+.mui-icon-delete:before { content: "\e6b4"; }
+.mui-icon-profile:before { content: "\e6b7"; }
+.mui-icon-home:before { content: "\e6b8"; }
+.mui-icon-cartfill:before { content: "\e6b9"; }
+.mui-icon-discoverfill:before { content: "\e6ba"; }
+.mui-icon-homefill:before { content: "\e6bb"; }
+.mui-icon-message:before { content: "\e6bc"; }
+.mui-icon-addressbook:before { content: "\e6bd"; }
+.mui-icon-link:before { content: "\e6bf"; }
+.mui-icon-lock:before { content: "\e6c0"; }
+.mui-icon-unlock:before { content: "\e6c2"; }
+.mui-icon-vip:before { content: "\e6c3"; }
+.mui-icon-activity:before { content: "\e6c5"; }
+.mui-icon-friendaddfill:before { content: "\e6c9"; }
+.mui-icon-friendadd:before { content: "\e6ca"; }
+.mui-icon-friendfamous:before { content: "\e6cb"; }
+.mui-icon-friend:before { content: "\e6cc"; }
+.mui-icon-goods:before { content: "\e6cd"; }
+.mui-icon-selection:before { content: "\e6ce"; }
+.mui-icon-explore:before { content: "\e6d2"; }
+.mui-icon-present:before { content: "\e6d3"; }
+.mui-icon-squarecheckfill:before { content: "\e6d4"; }
+.mui-icon-square:before { content: "\e6d5"; }
+.mui-icon-squarecheck:before { content: "\e6d6"; }
+.mui-icon-round:before { content: "\e6d7"; }
+.mui-icon-roundaddfill:before { content: "\e6d8"; }
+.mui-icon-roundadd:before { content: "\e6d9"; }
+.mui-icon-add:before { content: "\e6da"; }
+.mui-icon-notificationforbidfill:before { content: "\e6db"; }
+.mui-icon-explorefill:before { content: "\e6dd"; }
+.mui-icon-fold:before { content: "\e6de"; }
+.mui-icon-game:before { content: "\e6df"; }
+.mui-icon-redpacket:before { content: "\e6e0"; }
+.mui-icon-selectionfill:before { content: "\e6e1"; }
+.mui-icon-similar:before { content: "\e6e2"; }
+.mui-icon-appreciatefill:before { content: "\e6e3"; }
+.mui-icon-infofill:before { content: "\e6e4"; }
+.mui-icon-info:before { content: "\e6e5"; }
+.mui-icon-forwardfill:before { content: "\e6ea"; }
+.mui-icon-forward:before { content: "\e6eb"; }
+.mui-icon-rechargefill:before { content: "\e6ec"; }
+.mui-icon-recharge:before { content: "\e6ed"; }
+.mui-icon-vipcard:before { content: "\e6ee"; }
+.mui-icon-voice:before { content: "\e6ef"; }
+.mui-icon-voicefill:before { content: "\e6f0"; }
+.mui-icon-friendfavor:before { content: "\e6f1"; }
+.mui-icon-wifi:before { content: "\e6f2"; }
+.mui-icon-share:before { content: "\e6f3"; }
+.mui-icon-wefill:before { content: "\e6f4"; }
+.mui-icon-we:before { content: "\e6f5"; }
+.mui-icon-lightauto:before { content: "\e6f6"; }
+.mui-icon-lightforbid:before { content: "\e6f7"; }
+.mui-icon-lightfill:before { content: "\e6f8"; }
+.mui-icon-camerarotate:before { content: "\e6f9"; }
+.mui-icon-light:before { content: "\e6fa"; }
+.mui-icon-barcode:before { content: "\e6fb"; }
+.mui-icon-flashlightclose:before { content: "\e6fc"; }
+.mui-icon-flashlightopen:before { content: "\e6fd"; }
+.mui-icon-searchlist:before { content: "\e6fe"; }
+.mui-icon-service:before { content: "\e6ff"; }
+.mui-icon-sort:before { content: "\e700"; }
+.mui-icon-down:before { content: "\e703"; }
+.mui-icon-mobile:before { content: "\e704"; }
+.mui-icon-mobilefill:before { content: "\e705"; }
+.mui-icon-copy:before { content: "\e706"; }
+.mui-icon-countdownfill:before { content: "\e707"; }
+.mui-icon-countdown:before { content: "\e708"; }
+.mui-icon-noticefill:before { content: "\e709"; }
+.mui-icon-notice:before { content: "\e70a"; }
+.mui-icon-upstagefill:before { content: "\e70e"; }
+.mui-icon-upstage:before { content: "\e70f"; }
+.mui-icon-choicenessfill:before { content: "\e714"; }
+.mui-icon-choiceness:before { content: "\e715"; }
+.mui-icon-clothesfill:before { content: "\e716"; }
+.mui-icon-clothes:before { content: "\e717"; }
+.mui-icon-creativefill:before { content: "\e718"; }
+.mui-icon-creative:before { content: "\e719"; }
+.mui-icon-female:before { content: "\e71a"; }
+.mui-icon-keyboard:before { content: "\e71b"; }
+.mui-icon-male:before { content: "\e71c"; }
+.mui-icon-pullleft:before { content: "\e71f"; }
+.mui-icon-pullright:before { content: "\e720"; }
+.mui-icon-rankfill:before { content: "\e721"; }
+.mui-icon-rank:before { content: "\e722"; }
+.mui-icon-bad:before { content: "\e723"; }
+.mui-icon-cameraadd:before { content: "\e724"; }
+.mui-icon-focus:before { content: "\e725"; }
+.mui-icon-friendfill:before { content: "\e726"; }
+.mui-icon-cameraaddfill:before { content: "\e727"; }
+.mui-icon-apps:before { content: "\e729"; }
+.mui-icon-paintfill:before { content: "\e72a"; }
+.mui-icon-paint:before { content: "\e72b"; }
+.mui-icon-picfill:before { content: "\e72c"; }
+.mui-icon-refresharrow:before { content: "\e72d"; }
+.mui-icon-markfill:before { content: "\e730"; }
+.mui-icon-mark:before { content: "\e731"; }
+.mui-icon-presentfill:before { content: "\e732"; }
+.mui-icon-repeal:before { content: "\e733"; }
+.mui-icon-album:before { content: "\e734"; }
+.mui-icon-peoplefill:before { content: "\e735"; }
+.mui-icon-people:before { content: "\e736"; }
+.mui-icon-servicefill:before { content: "\e737"; }
+.mui-icon-repair:before { content: "\e738"; }
+.mui-icon-file:before { content: "\e739"; }
+.mui-icon-repairfill:before { content: "\e73a"; }
+.mui-icon-taoxiaopu:before { content: "\e73b"; }
+.mui-icon-attentionfill:before { content: "\e73c"; }
+.mui-icon-attention:before { content: "\e73d"; }
+.mui-icon-commandfill:before { content: "\e73e"; }
+.mui-icon-command:before { content: "\e73f"; }
+.mui-icon-communityfill:before { content: "\e740"; }
+.mui-icon-community:before { content: "\e741"; }
+.mui-icon-read:before { content: "\e742"; }
+.mui-icon-calendar:before { content: "\e74a"; }
+.mui-icon-cut:before { content: "\e74b"; }
+.mui-icon-magic:before { content: "\e74c"; }
+.mui-icon-backwardfill:before { content: "\e74d"; }
+.mui-icon-forwardfill1:before { content: "\e74e"; }
+.mui-icon-playfill:before { content: "\e74f"; }
+.mui-icon-stop:before { content: "\e750"; }
+.mui-icon-tagfill:before { content: "\e751"; }
+.mui-icon-tag:before { content: "\e752"; }
+.mui-icon-group:before { content: "\e753"; }
+.mui-icon-move:before { content: "\e754"; }
+.mui-icon-all:before { content: "\e755"; }
+.mui-icon-backdelete:before { content: "\e756"; }
+.mui-icon-hotfill:before { content: "\e757"; }
+.mui-icon-hot:before { content: "\e758"; }
+.mui-icon-post:before { content: "\e759"; }
+.mui-icon-radiobox:before { content: "\e75b"; }
+.mui-icon-rounddown:before { content: "\e75c"; }
+.mui-icon-upload:before { content: "\e75d"; }
+.mui-icon-videofill:before { content: "\e75e"; }
+.mui-icon-video:before { content: "\e75f"; }
+.mui-icon-writefill:before { content: "\e760"; }
+.mui-icon-write:before { content: "\e761"; }
+.mui-icon-radioboxfill:before { content: "\e763"; }
+.mui-icon-punch:before { content: "\e764"; }
+.mui-icon-shake:before { content: "\e765"; }
+.mui-icon-add1:before { content: "\e767"; }
+.mui-icon-move1:before { content: "\e768"; }
+.mui-icon-safe:before { content: "\e769"; }
+.mui-icon-activityfill:before { content: "\e775"; }
+.mui-icon-crownfill:before { content: "\e776"; }
+.mui-icon-crown:before { content: "\e777"; }
+.mui-icon-goodsfill:before { content: "\e778"; }
+.mui-icon-messagefill:before { content: "\e779"; }
+.mui-icon-profilefill:before { content: "\e77a"; }
+.mui-icon-sound:before { content: "\e77b"; }
+.mui-icon-sponsorfill:before { content: "\e77c"; }
+.mui-icon-weunblock:before { content: "\e780"; }
+.mui-icon-weblock:before { content: "\e77f"; }
+.mui-icon-upblock:before { content: "\e77e"; }
+.mui-icon-sponsor:before { content: "\e77d"; }
+.mui-icon-babyfill:before { content: "\e710"; }
+.mui-icon-baby:before { content: "\e711"; }
+/************************* end ****************************/
+
+
+
+/**
+*	列表
+*/
+/************************* start ****************************/
+.mui-list{
+	position: relative;
+	list-style: none;
+	@at-root .mui-list-cell{
+		padding-top: 0.3rem;
+		padding-bottom: 0.25rem;
+		padding-left: 0.3rem;
+		padding-right: 0.3rem;
+		overflow: hidden;
+		position: relative;
+		-webkit-touch-callout: none;
+		background: $listBgColor;
+		@include flexbox;
+		@extend .mui-line-bottom;
+		&:active{
+			background-color: $listBgColorHover;
+		}
+		>a{
+			@include flexAuto;
+			display: box;
+			display: -webkit-box;
+			display:flex;
+			&.mui-btn{
+				flex: none;
+			}
+		}
+		@at-root .mui-list-icon{
+		    white-space: nowrap;
+			display: -webkit-box;
+			-webkit-box-align: center;
+			font-size: 0.5rem;
+			margin-right: 0.2rem;
+			position: absolute;
+			top: 50%;
+			transform: translateY(-50%);
+			& + a{
+				padding-left: 0.6rem;
+			}
+		}
+		@at-root .mui-list-cell{
+			&:last-child{
+				&:after{
+					//background: none;
+				}
+			}
+		}
+	}
+	.bg{
+		/*background: url("../../../assets/images/user/icon-center-quan.png") 0 10% no-repeat #fff;*/
+		background-size: 50% 100%;
+		padding:0.5rem 0.2rem 0.5rem 0;
+		span{color:#df3338;}
+	}
+}
+
+//列表里面有图文
+.mui-img{
+	@include flexbox;
+	@include flexCenterVeri;
+	@include padding(0.24rem, 0.3rem);
+	&.mui-list-reverse{
+		@include flexHoriReverse;
+		.mui-img-img{
+			margin-right: 0;
+			margin-left: 0.2rem;
+		}
+	}
+}
+.mui-img-img{
+	width: 1.2rem;
+	height: 1.2rem;
+	display: block;
+	overflow: hidden;
+	@include borderRadius(4px);
+	margin-right: 0.2rem;
+}
+.border{
+	border:1px solid #c6c6c6;
+}
+.mui-img-body{
+	overflow:hidden;
+	@include flexAuto;
+	>h2{
+		line-height: 0.52rem;
+	}
+	>p{
+		line-height: 0.44rem;
+		color: $fontLightenrColor;
+		font-size: 0.28rem;
+	}
+}
+
+
+
+.mui-border{
+	position: relative;
+	overflow: hidden;
+	border-radius: 4px;
+	&:after{
+		width: 200%;
+		height: 200%;
+		position: absolute;
+		top: 0;
+		left: 0;
+		transform-origin: 0 0;
+		transform: scale(0.5) translateZ(0);
+		border: 1px solid $lineColor;
+		border-radius: 4px;
+		content: " ";
+	}
+}
+/************************* end *******************************/
+
+/**
+*	列表里面有图文(全屏)
+*/
+
+.imgword-f1{
+	//@include mui-flex;
+	//position: relative;
+	//@include flexCenterVeri;
+	//@include padding(0.24rem, 0.3rem);
+
+	a{
+
+		height: 3.5rem;
+		overflow: hidden;
+		display: block;
+		img{
+			width: 100%;
+		}
+	}
+	span{
+		width: 100%;
+		height: 0.6rem;
+		line-height: 0.6rem;
+		background-color:rgba(0,0,0,0.5);
+		color: $fontColor;
+		position: absolute;
+		bottom:0;
+		left: 0;
+		padding-left: 2%;
+	}
+}
+
+/**
+*	圆形图片列表
+*/
+/************************* start ****************************/
+.uselist-wrap{
+	@extend .mui-line-top;
+	@at-root .uselist{
+	position: relative;
+	background: $listBgColor;
+	list-style: none;
+	@include borderRadius(5px);
+	.list-cell{
+		@include flexbox;
+		@include flexCenterVeri;
+		@include padding(0.24rem, 0.3rem);
+		.list-img{
+			width: 1.8rem;
+			height: 1.8rem;
+			display: block;
+			overflow: hidden;
+			@include borderRadius(50%);
+			margin-right: 0.2rem;
+		}
+		.list-con{
+			>p{
+				line-height: 0.52rem;
+				color: #fff;
+				font-size: 0.28rem;
+			}
+		}
+	}
+}
+}
+
+
+
+
+/**
+*	arrow箭头
+*/
+/************************* start ****************************/
+.mui-arrow{
+	position: relative;
+	overflow: hidden;
+}
+$arrowValue: (right: "\e6a3", up: "\e661");
+@each $header, $value in $arrowValue{
+	.mui-arrow-#{$header}{
+		@extend .mui-arrow;
+		padding-right: 0.4rem;
+		&:after{
+			font-family:"auiicon" !important;
+			font-size:inherit;
+			font-style:normal;
+			-webkit-font-smoothing: antialiased;
+			-webkit-text-stroke-width: 0.2px;
+			-moz-osx-font-smoothing: grayscale;
+			content: $value;
+			position: absolute;
+			right: 0;
+			color: inherit;
+			line-height: 1;
+			top: 50%;
+			transform: translateY(-50%);
+		}
+	}
+}
+/************************* end *******************************/
+
+/**
+*	栅格
+*	最大支持6列,可以在数组中添加，但是太多列没有意义
+*/
+/************************* start ****************************/
+.mui-grids{
+	position: relative;
+	overflow: hidden;
+	@extend .clearfix;
+	background-color: #fff;
+	@extend .mui-padding-10;
+	@at-root .mui-grid{
+		position: relative;
+		float: left;
+		@include flexbox;
+		@include flexCenterVeri;
+		@include flexboxVertical;
+		@extend .mui-padding-10;
+		@at-root .mui-grid-img{
+			width: 1.0rem;
+			height: 1.0rem;
+			display: block;
+			margin-bottom: 0.15rem;
+		}
+		>p{
+			line-height: 0.44rem;
+			@extend .mui-ellipsis-1;
+			@extend .mui-text-center;
+			font-size: 0.28rem;
+		}
+		.mui-label{
+			padding-right: 0;
+		}
+	}
+}
+$gridWidth: (1: 100%, 2: 50%, 3: 33.33333333%, 4: 25%, 5: 20%, 6: 16.66666667%);
+@each $header, $value in $gridWidth{
+	.mui-grid-#{$header}{
+		width: $value;
+	}
+}
+/************************* end *******************************/
+
+
+/**
+*	label
+*/
+/************************* start ****************************/
+.mui-label{
+	position: relative;
+	overflow: hidden;
+	display: block;
+	padding-right: 0.2rem;
+}
+/************************* end *******************************/
+
+
+
+/**
+*	左边名称，右边带箭头的title
+*/
+/************************* start ****************************/
+.mui-block-title{
+	position: relative;
+	overflow: hidden;
+	height: 1rem;
+	background-color: $listBgColor;
+	@include padding(0,0.3rem);
+	@extend .mui-line-bottom;
+	@include flexbox;
+	@include flexCenterVeri;
+	.mui-label{
+		@include flexAuto;
+		font-size: 0.38rem;
+		font-weight: 400;
+	}
+	a{
+		font-size: 0.28rem;
+		color: #b01d23;
+		&:active{
+			color: #681418;
+		}
+	}
+}
+/************************* end *******************************/
+
+/**
+*	上面图片，底下说明文字
+*/
+/************************* start ****************************/
+.mui-tv{
+	position: relative;
+	overflow: hidden;
+	@include paddingAll(0.1rem, 0.1rem, 0.1rem,0.1rem);
+	@at-root .mui-tv-img{
+		display: block;
+		@include borderRadius(10px);
+		position: relative;
+		width:1.6rem;
+		height: 1.6rem;
+		&:after{
+			width: 200%;
+			height: 200%;
+			position:absolute;
+			top: 0;
+			left: 0;
+			transform: scale(0.5);
+			content: " ";
+			border: solid 1px $lineColor;
+		}
+	}
+	.mui-label{
+		margin-top: 0.1rem;
+		font-size: 0.28rem;
+		line-height: 0.32rem;
+		@extend .mui-text-center;
+		padding-right: 0;
+	}
+}
+/************************* end *******************************/
+
+/**
+*	form表单
+*/
+/************************* start ****************************/
+textarea,
+input,
+select {
+	width: 100%;
+	-webkit-appearance: none;
+	-webkit-user-select: text;
+	line-height: 0.42rem;
+	-webkit-user-select: text;
+	background-color: #fff;
+	@include borderRadius();
+	border: none;
+	outline: none;
+}
+
+.mui-form{
+	position: relative;
+	background: #fff;
+	@at-root .mui-form-row{
+		@include flexbox;
+		@include flexCenterVeri;
+		width: 100%;
+		@extend .mui-line-bottom;
+		height: 1.1rem;
+		.mui-iconfont{
+			margin-right: 0.2rem;
+			color: #a5a5a5;
+		}
+		.mui-label{
+			@extend .mui-padding-0-15;
+		}
+		@at-root .mui-form-input{
+			font-size: 0.32rem;
+			display: block;
+			@include flexAuto;
+			// height: 1.2rem;
+			&::-webkit-input-placeholer{
+				color: #777777;
+			}
+		}
+		&:last-child{
+			&:after{
+				background: none;
+			}
+		}
+		>.mui-btn{
+			margin-left: 0.2rem;
+		}
+	}
+
+	@at-root .mui-border{
+		&:after{
+			background: none;
+			border: 0;
+		}
+		.mui-form{
+			@extend .mui-padding-0-10;
+		}
+	}
+}
+/************************* end *******************************/
+
+
+/**
+*	用户中心列表
+*/
+/************************* start ****************************/
+.user-list{
+	background: #fff;
+	padding-left: 0.1rem;
+	list-style: none;
+	.cell{
+		padding-top: 0.4rem;
+		padding-bottom: 0.4rem;
+		padding-right: 0.3rem;
+		overflow: hidden;
+		-webkit-touch-callout: none;
+		@include flexbox;
+		@extend .mui-line-bottom;
+		&:active{
+			background-color: $listBgColorHover;
+		}
+		>img{
+			width: 1.5rem;
+			height: 1.5rem;
+			display: block;
+			overflow: hidden;
+			margin-right: 0.2rem;
+		}
+		>img.radius50{
+			@include borderRadius(50%);
+		}
+		>img.square{
+			border: 1px solid #c6c6c6;
+		}
+		.cell-con{
+			overflow:hidden;
+			@include flexAuto;
+			>h2{
+				@include flexbox;
+				line-height: 0.55rem;
+				position: relative;
+				>span{
+					position:absolute;
+					top: 0;
+					right: 0;
+				}
+				>em{
+					position:absolute;
+					top: 0.2rem;
+					right: 0;
+				}
+				.blue{
+					color: #4fd566;
+				}
+			}
+			>p{
+				@include flexbox;
+				line-height: 0.55rem;
+				color: $fontLightenrColor;
+				font-size: 0.28rem;
+				>span{
+					position:absolute;
+					top: 0;
+					right: 0;
+					color: #159700;
+
+				}
+				.red{
+					color: #e72531;
+				}
+			}
+		}
+	}
+}
+/************************* end *******************************/

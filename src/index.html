@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="Keywords" content="金珠2.0">
+    <meta name="Description" content="金珠2.0">
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="cache-control" content="no-cache">
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=0,minimum-scale=1.0,maximum-scale=1.0">
+    <title>金珠2.0</title>
+    <script>
+    +function(b) {
+        var h = document.documentElement, w = h.clientWidth;
+        h.style.fontSize = w / b + "px";
+    }(7.5);
+    </script>
+    <style>
+        html {
+            -ms-text-size-adjust: 100%;
+            -webkit-text-size-adjust: 100%;
+            -webkit-tap-highlight-color: transparent;
+            height: 100%;
+            overflow: hidden;
+        }
+        body {
+            margin: 0;
+            min-height: 100%;
+            overflow: hidden;
+        }
+        [v-cloak] {
+            display: none;
+        }
+        .fist-loading{
+            position: absolute;
+            top: 0;
+            height: 100%;
+            width: 100%;
+            color: #fff;
+            background-color: rgba(255,255,255)
+        }
+
+        .view { transition: all .5s ease; }
+        .test-enter, .test-leave { opacity: 0; transform: translate3d(10px, 0, 0); }
+        .v-link-active { color: #4e4e4e; }
+    </style>
+</head>
+
+
+<body ontouchstart>
+
+    <div id="app" class="wrap-app">
+
+        <div class="fist-loading" v-show="loading"></div>
+
+        <router-view transition="fade" transition-mode="out-in" keep-alive></router-view>
+
+    </div>
+
+</body>
+
+</html>

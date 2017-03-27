@@ -1,0 +1,53 @@
+.mui-bar {
+  padding-left: 50px;
+  padding-right: 50px;
+  padding-top: .1025rem;
+  padding-bottom: .1025rem
+}
+.brand-list {
+  background-color: #fff
+}
+.brand-list .mui-img-body>h2 {
+  color: #333
+}
+.brand-list .mui-img-body p {
+  line-height: .55rem;
+  color: #777;
+  font-size: .26rem
+}
+.wrapper .mui-body {
+  padding-bottom: 0
+}
+.mui-screen {
+  position: relative;
+  z-index: 9
+}
+.brand-label {
+  display: inline-block;
+  margin-left: .1rem;
+  margin-right: .1rem;
+  font-size: .24rem;
+  text-align: center;
+  color: #fff;
+  height: .4rem;
+  width: .4rem;
+  line-height: .4rem;
+  border-radius: 4px
+}
+.brand-label:first-child {
+  margin-left: .4rem
+}
+.brand-label-tuan {
+  background-color: #fd9b00
+}
+.brand-label-jian {
+  background-color: #49bf30
+}
+.brand-label-recommend {
+  background-color: #f00
+}
+.brand-map {
+  color: #b01d23;
+  font-size: .3rem;
+  width: 1rem
+}

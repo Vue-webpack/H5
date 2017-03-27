@@ -1,0 +1,18 @@
+// common
+export const SET_MALL_ID = 'SET_MALL_ID'
+export const SET_USER_ID = 'SET_USER_ID'
+export const SET_UNION_ID = 'SET_UNION_ID'
+export const SET_USER_INFO = 'SET_USER_INFO'
+export const SET_WX_AUTH = 'SET_WX_AUTH'
+export const AJAX_LOADED = 'AJAX_LOADED'
+export const AJAX_LOADING = 'AJAX_LOADING'
+
+
+// auth
+export const LOGIN = 'LOGIN'
+export const LOGOUT = 'LOGOUT'
+
+export const SET_IDENTIFYING_STATE = 'SET_IDENTIFYING_STATE'
+export const SET_IDENTIFYING_PHONE = 'SET_IDENTIFYING_PHONE'
+export const SET_IDENTIFYING_CODE = 'SET_IDENTIFYING_CODE'
+export const SET_ENCODED_IDENTIFYING_CODE = 'SET_ENCODED_IDENTIFYING_CODE'
